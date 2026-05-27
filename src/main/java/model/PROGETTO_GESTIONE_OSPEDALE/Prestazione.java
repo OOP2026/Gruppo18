@@ -1,4 +1,4 @@
-package PROGETTO_GESTIONE_OSPEDALE;
+package model.PROGETTO_GESTIONE_OSPEDALE;
 import java.time.LocalDateTime;
 
 public class Prestazione {

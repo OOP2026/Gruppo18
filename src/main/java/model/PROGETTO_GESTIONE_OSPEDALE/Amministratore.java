@@ -1,4 +1,4 @@
-package PROGETTO_GESTIONE_OSPEDALE;
+package model.PROGETTO_GESTIONE_OSPEDALE;
 
 public class Amministratore extends Utente{
 
@@ -11,5 +11,4 @@ public class Amministratore extends Utente{
     void assegnaPaziente(){}
 
     void visualizzaAnagraficaPaziente(Paziente paziente){}
-
 }

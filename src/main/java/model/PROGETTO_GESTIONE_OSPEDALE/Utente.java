@@ -1,4 +1,4 @@
-package PROGETTO_GESTIONE_OSPEDALE;
+package model.PROGETTO_GESTIONE_OSPEDALE;
 
 public class Utente {
 
@@ -13,4 +13,17 @@ public class Utente {
         this.password = password;
         this.username = username;
     }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public String getPassword(){
+        return password;
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
 }
