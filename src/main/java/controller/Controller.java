@@ -1,17 +1,18 @@
 package controller;
 
-import PROGETTO_GESTIONE_OSPEDALE.gui.*;
+import gui.*;
 import model.PROGETTO_GESTIONE_OSPEDALE.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller {
-
+    //logger per gli sostituire i system out
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(Controller.class.getName());
     //Finestre
-    private LoginWindow loginWindow;
-    private AdminWindow adminWindow;
-    private MedicoWindow medicoWindow;
+    final LoginWindow loginWindow;
+    final AdminWindow adminWindow;
+    final MedicoWindow medicoWindow;
 
     public Controller() {
         //Inizializzazione GUI
@@ -33,7 +34,7 @@ public class Controller {
 
     //Metodi di utility
     private void eseguiLogout(JFrame finestraAttuale) {
-        System.out.println("Logout effettuato. Ritorno al Login.");
+        LOGGER.info("Logout effettuato. Ritorno al Login.");
 
         // Nasconde la finestra che stai usando (Admin o Medico)
         finestraAttuale.setVisible(false);
@@ -57,11 +58,11 @@ public class Controller {
 
             //Qua si dovrà sostituire con una verifica query del DB
             if (user.equals("admin")) {
-                System.out.println("Login Amministratore effettuato.");
+                LOGGER.info("Login Amministratore effettuato.");
                 loginWindow.setVisible(false);
                 adminWindow.setVisible(true);
             } else if (user.equals("medico")) {
-                System.out.println("Login Medico effettuato.");
+                LOGGER.info("Login Medico effettuato.");
                 loginWindow.setVisible(false);
                 medicoWindow.setVisible(true);
             } else {
@@ -96,12 +97,12 @@ public class Controller {
             String letto = adminWindow.getNumLetto();
 
             if (nosologico.isEmpty() || letto.isEmpty()) {
-                System.out.println("ERRORE: Compila Nosologico e Letto per il ricovero.");
+                LOGGER.severe("ERRORE: Compila Nosologico e Letto per il ricovero.");
                 return;
             }
 
             // Questo andra' salvato nel DB
-            System.out.println("RICOVERO: Paziente " + nosologico + " assegnato a letto " + letto);
+            LOGGER.info("RICOVERO: Paziente " + nosologico + " assegnato a letto " + letto);
             adminWindow.svuotaCampi();
             adminWindow.getTabbedPane().setSelectedIndex(0);
         });
@@ -113,12 +114,12 @@ public class Controller {
             String nos = adminWindow.getNumNosologicoNuovo();
 
             if (nome.isEmpty() || cognome.isEmpty() || nos.isEmpty()) {
-                System.out.println("ERRORE: Compila tutti i campi dell'anagrafica.");
+                LOGGER.severe("ERRORE: Compila tutti i campi dell'anagrafica.");
                 return;
             }
 
             // Anche questo dovra' essere salvato nel DB
-            System.out.println("ANAGRAFICA: Paziente " + nome + " " + cognome + " registrato.");
+            LOGGER.info("ANAGRAFICA: Paziente " + nome + " " + cognome + " registrato.");
             adminWindow.svuotaCampi();
             adminWindow.getTabbedPane().setSelectedIndex(0);
         });
@@ -154,15 +155,15 @@ public class Controller {
         medicoWindow.getCONFERMAButton().addActionListener(e -> {
             String pres = medicoWindow.getPrestazioneEseguita();
             String verb = medicoWindow.getVerbale();
-            String tipo = medicoWindow.isIntervento() ? "Intervento" : (medicoWindow.isVisita() ? "Visita" : "Non specificato");
+            String tipo = medicoWindow.getDescrizioneTipo();
 
             if (pres.isEmpty() || verb.isEmpty()) {
-                System.out.println("ERRORE: Compila codice prestazione e verbale.");
+                LOGGER.severe("ERRORE: Compila codice prestazione e verbale.");
                 return;
             }
 
             // Pure questo andra' salvato nel DB
-            System.out.println("PRESTAZIONE ESEGUITA: " + pres + " (" + tipo + ") - Verbale: " + verb);
+            LOGGER.info("PRESTAZIONE ESEGUITA: " + pres + " (" + tipo + ") - Verbale: " + verb);
             medicoWindow.svuotaCampi();
             medicoWindow.getTabbedPane1().setSelectedIndex(0);
         });
@@ -173,12 +174,12 @@ public class Controller {
             String ricovero = medicoWindow.getRicovero();
 
             if (data.isEmpty() || ricovero.isEmpty()) {
-                System.out.println("ERRORE: Compila data e codice ricovero.");
+                LOGGER.severe("ERRORE: Compila data e codice ricovero.");
                 return;
             }
 
             // Questo anche andra' salvato nel DB
-            System.out.println("PRESTAZIONE PIANIFICATA: Data " + data + " per ricovero " + ricovero);
+            LOGGER.info("PRESTAZIONE PIANIFICATA: Data " + data + " per ricovero " + ricovero);
             medicoWindow.svuotaCampi();
             medicoWindow.getTabbedPane1().setSelectedIndex(0);
         });
@@ -189,12 +190,12 @@ public class Controller {
             String nuovoVerbale = medicoWindow.getNuovoVerbale();
 
             if (pres.isEmpty() || nuovoVerbale.isEmpty()) {
-                System.out.println("ERRORE: Compila la prestazione e il nuovo verbale.");
+                LOGGER.severe("ERRORE: Compila la prestazione e il nuovo verbale.");
                 return;
             }
 
             //Andra' fatto un update nel DB
-            System.out.println("VERBALE AGGIORNATO per prestazione: " + pres);
+            LOGGER.info("VERBALE AGGIORNATO per prestazione: " + pres);
             medicoWindow.svuotaCampi();
             medicoWindow.getTabbedPane1().setSelectedIndex(0);
         });

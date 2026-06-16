@@ -1,4 +1,4 @@
-package PROGETTO_GESTIONE_OSPEDALE.gui;
+package gui;
 
 import javax.swing.*;
 
@@ -13,7 +13,7 @@ public class LoginWindow extends JFrame {
     public LoginWindow() {
         setTitle("Ospedale - Login");
         setSize(350, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         if (mainPanel != null) setContentPane(mainPanel);
     }

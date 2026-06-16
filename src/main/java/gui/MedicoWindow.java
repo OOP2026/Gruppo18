@@ -1,10 +1,9 @@
-package PROGETTO_GESTIONE_OSPEDALE.gui;
+package gui;
 
 import javax.swing.*;
 
 public class MedicoWindow extends JFrame {
     private JPanel mainPanel;
-    private JPanel menu;
     private JButton btnEseguiPrestazione;
     private JButton btnPianificaPrestazione;
     private JButton btnModificaVerbale;
@@ -31,7 +30,7 @@ public class MedicoWindow extends JFrame {
     public MedicoWindow() {
         setTitle("Pannello Medico");
         setSize(700, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         if (mainPanel != null) setContentPane(mainPanel);
 
@@ -75,6 +74,12 @@ public class MedicoWindow extends JFrame {
     // Comando che serve al controller per scrivere l'agenda presa dal Database dentro l'area di testo
     public void setTestoAgenda(String testo) { turnoDelMedicoTextArea.setText(testo); }
     public JButton getINDIETROButton3() { return INDIETROButton3; }
+
+    public String getDescrizioneTipo() {
+        if (this.isIntervento()) return "Intervento";
+        if (this.isVisita()) return "Visita";
+        return "Non specificato";
+    }
 
     //Metodi di Utility
     public void svuotaCampi() {

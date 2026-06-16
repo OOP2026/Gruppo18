@@ -1,4 +1,4 @@
-package PROGETTO_GESTIONE_OSPEDALE.gui;
+package gui;
 
 import javax.swing.*;
 
@@ -10,7 +10,6 @@ public class AdminWindow extends JFrame {
     private JButton btnVisualizzaAnagrafica;
     private JButton btnLogout;
     private JTabbedPane tabbedPane;
-    private JPanel menu;
     private JTextField numNosologicoTextField1;
     private JTextField nomeTextField;
     private JTextField cognomeTextField;
@@ -30,7 +29,7 @@ public class AdminWindow extends JFrame {
     public AdminWindow() {
         setTitle("Pannello Amministratore");
         setSize(700, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         if (mainPanel != null) setContentPane(mainPanel);
 
