@@ -2,17 +2,24 @@ package controller;
 
 import gui.*;
 import model.PROGETTO_GESTIONE_OSPEDALE.*;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Logger;
 
 public class Controller {
-    //logger per gli sostituire i system out
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(Controller.class.getName());
+    //logger per sostituire i system out
+    private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
+    private static final String D_NOME = "Nome";
+    private static final String D_COGNOME = "Cognome";
     //Finestre
     final LoginWindow loginWindow;
     final AdminWindow adminWindow;
     final MedicoWindow medicoWindow;
+
+    //Variabile per mantenere in memoria l'utente loggato
+    private String utenteLoggatoEmail;
 
     public Controller() {
         //Inizializzazione GUI
@@ -35,17 +42,16 @@ public class Controller {
     //Metodi di utility
     private void eseguiLogout(JFrame finestraAttuale) {
         LOGGER.info("Logout effettuato. Ritorno al Login.");
+        utenteLoggatoEmail = null;
 
-        // Nasconde la finestra che stai usando (Admin o Medico)
         finestraAttuale.setVisible(false);
 
-        // Se la loginWindow esiste, la fa ricomparire
         if (loginWindow != null) {
             loginWindow.setVisible(true);
         }
     }
 
-    //Gstione login
+    //Gestione login
     private void inizializzaEventiLogin() {
         loginWindow.getBtnAccedi().addActionListener(e -> {
             String user = loginWindow.getUsername();
@@ -58,10 +64,12 @@ public class Controller {
 
             //Qua si dovrà sostituire con una verifica query del DB
             if (user.equals("admin")) {
+                utenteLoggatoEmail = user;
                 LOGGER.info("Login Amministratore effettuato.");
                 loginWindow.setVisible(false);
                 adminWindow.setVisible(true);
             } else if (user.equals("medico")) {
+                utenteLoggatoEmail = user;
                 LOGGER.info("Login Medico effettuato.");
                 loginWindow.setVisible(false);
                 medicoWindow.setVisible(true);
@@ -74,7 +82,7 @@ public class Controller {
     //Gestione degli eventi della schermata ADMIN
     private void inizializzaEventiAdmin() {
 
-        // Navigaizone menù
+        // Navigazione menù
         adminWindow.getBtnIniziaRicovero().addActionListener(e -> adminWindow.getTabbedPane().setSelectedIndex(1));
         adminWindow.getBtnAssegnaPaziente().addActionListener(e -> adminWindow.getTabbedPane().setSelectedIndex(2));
         adminWindow.getBtnVisualizzaAnagrafica().addActionListener(e -> adminWindow.getTabbedPane().setSelectedIndex(3));
@@ -101,10 +109,16 @@ public class Controller {
                 return;
             }
 
-            // Questo andra' salvato nel DB
-            LOGGER.info("RICOVERO: Paziente " + nosologico + " assegnato a letto " + letto);
-            adminWindow.svuotaCampi();
-            adminWindow.getTabbedPane().setSelectedIndex(0);
+                Amministratore admin = new Amministratore(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            boolean successo = admin.iniziaRicovero(nosologico, letto);
+
+            if (successo) {
+                LOGGER.info("RICOVERO: Paziente " + nosologico + " assegnato a letto " + letto);
+                adminWindow.svuotaCampi();
+                adminWindow.getTabbedPane().setSelectedIndex(0);
+            } else {
+                LOGGER.severe("ERRORE: Fallita creazione ricovero.");
+            }
         });
 
         // Conferma assegna paziente
@@ -118,10 +132,16 @@ public class Controller {
                 return;
             }
 
-            // Anche questo dovra' essere salvato nel DB
-            LOGGER.info("ANAGRAFICA: Paziente " + nome + " " + cognome + " registrato.");
-            adminWindow.svuotaCampi();
-            adminWindow.getTabbedPane().setSelectedIndex(0);
+            Amministratore admin = new Amministratore(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            boolean successo = admin.assegnaPaziente(nome, cognome, nos);
+
+            if (successo) {
+                LOGGER.info("ANAGRAFICA: Paziente " + nome + " " + cognome + " registrato.");
+                adminWindow.svuotaCampi();
+                adminWindow.getTabbedPane().setSelectedIndex(0);
+            } else {
+                LOGGER.severe("ERRORE: Registrazione anagrafica fallita.");
+            }
         });
     }
 
@@ -132,9 +152,13 @@ public class Controller {
         medicoWindow.getBtnEseguiPrestazione().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(1));
         medicoWindow.getBtnPianificaPrestazione().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(2));
         medicoWindow.getBtnModificaVerbale().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(3));
+
+        // Visualizza agenda
         medicoWindow.getBtnVisualizzaAgenda().addActionListener(e -> {
-            //Andra' aggiunta una Query al DB per recuperare i turni del medico loggato
-            medicoWindow.setTestoAgenda("=== AGENDA DEL MEDICO ===\n- Nessun turno presente per oggi.");
+            Medico medico = new Medico(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            String agenda = medico.recuperaTurniAgenda();
+
+            medicoWindow.setTestoAgenda(agenda);
             medicoWindow.getTabbedPane1().setSelectedIndex(4);
         });
 
@@ -157,15 +181,20 @@ public class Controller {
             String verb = medicoWindow.getVerbale();
             String tipo = medicoWindow.getDescrizioneTipo();
 
-            if (pres.isEmpty() || verb.isEmpty()) {
+            if (pres.isEmpty() || verb.isEmpty() || tipo.equals("Non specificato")) {
                 LOGGER.severe("ERRORE: Compila codice prestazione e verbale.");
                 return;
             }
 
-            // Pure questo andra' salvato nel DB
-            LOGGER.info("PRESTAZIONE ESEGUITA: " + pres + " (" + tipo + ") - Verbale: " + verb);
-            medicoWindow.svuotaCampi();
-            medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            Medico medico = new Medico(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            boolean successo = medico.eseguiPrestazione(pres, verb, tipo);
+            if (successo) {
+                LOGGER.info("PRESTAZIONE ESEGUITA: " + pres + " (" + tipo + ") - Verbale: " + verb);
+                medicoWindow.svuotaCampi();
+                medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            } else {
+                LOGGER.severe("ERRORE: Fallita esecuzione prestazione.");
+            }
         });
 
         // Pianifica prestazione
@@ -178,10 +207,16 @@ public class Controller {
                 return;
             }
 
-            // Questo anche andra' salvato nel DB
-            LOGGER.info("PRESTAZIONE PIANIFICATA: Data " + data + " per ricovero " + ricovero);
-            medicoWindow.svuotaCampi();
-            medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            Medico medico = new Medico(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            boolean successo = medico.pianificaPrestazione(data, ricovero);
+
+            if (successo) {
+                LOGGER.info("PRESTAZIONE PIANIFICATA: Data " + data + " per ricovero " + ricovero);
+                medicoWindow.svuotaCampi();
+                medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            } else {
+                LOGGER.severe("ERRORE: Fallita pianificazione prestazione.");
+            }
         });
 
         // Modifica verbale
@@ -194,10 +229,16 @@ public class Controller {
                 return;
             }
 
-            //Andra' fatto un update nel DB
-            LOGGER.info("VERBALE AGGIORNATO per prestazione: " + pres);
-            medicoWindow.svuotaCampi();
-            medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            Medico medico = new Medico(utenteLoggatoEmail, "", D_NOME, D_COGNOME);
+            boolean successo = medico.modificaVerbale(pres, nuovoVerbale);
+
+            if (successo) {
+                LOGGER.info("VERBALE AGGIORNATO per prestazione: " + pres);
+                medicoWindow.svuotaCampi();
+                medicoWindow.getTabbedPane1().setSelectedIndex(0);
+            } else {
+                LOGGER.severe("ERRORE: Fallita modifica verbale.");
+            }
         });
     }
 }

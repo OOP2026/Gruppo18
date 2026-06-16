@@ -9,16 +9,24 @@ public class Medico extends Utente {
         super(username, password, nome, cognome);
     }
 
-    void eseguiPrestazione() {
+    public boolean eseguiPrestazione(String codicePrestazione, String verbale, String tipo) {
+        // MOCK: Restituisce sempre true
+        return true;
     }
 
-    void pianificaPrestazione() {
+    public boolean pianificaPrestazione(String data, String codiceRicovero) {
+        // MOCK: Restituisce sempre true
+        return true;
     }
 
-    void modificaVerbale(Prestazione verbale_prestazione){
+    public boolean modificaVerbale(String codicePrestazione, String nuovoVerbale) {
+        // MOCK: Restituisce sempre true
+        return true;
     }
 
-    void visualizzaAgenda(){
+    public String recuperaTurniAgenda() {
+        // MOCK: Restituisce una stringa precompilata da mostrare nella GUI
+        return "=== AGENDA DEL MEDICO (Modalità Test) ===\n" +
+                "- Nessun dato dal database (DAO non ancora implementato).";
     }
-
 }
