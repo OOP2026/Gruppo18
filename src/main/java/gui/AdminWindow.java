@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class AdminWindow extends JFrame {
     //Componenti grafici
+    private JPanel menu;
     private JPanel mainPanel;
     private JButton btnIniziaRicovero;
     private JButton btnAssegnaPaziente;

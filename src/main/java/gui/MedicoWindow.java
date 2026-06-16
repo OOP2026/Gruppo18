@@ -3,6 +3,7 @@ package gui;
 import javax.swing.*;
 
 public class MedicoWindow extends JFrame {
+    private JPanel menu;
     private JPanel mainPanel;
     private JButton btnEseguiPrestazione;
     private JButton btnPianificaPrestazione;
