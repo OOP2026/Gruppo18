@@ -1,15 +1,27 @@
 package model.PROGETTO_GESTIONE_OSPEDALE;
+
 import java.time.LocalDateTime;
 
-public class Intervento extends Prestazione{
+public class Intervento extends Prestazione {
 
-    private String tipo_intervento;
-    private boolean risultato;
+    // Variabile esclusiva solo per gli interventi
+    private String tipoIntervento;
 
-    public Intervento(String tipo, LocalDateTime inizio, LocalDateTime fine, String verbale){
-        super(inizio, fine, verbale);
-        this.tipo_intervento = tipo_intervento;
-        this.risultato = risultato;
+    public Intervento(String tipo, LocalDateTime inizio, LocalDateTime fine, String verbale, String tipoIntervento) {
+        // Passa i primi 4 parametri al padre
+        super(tipo, inizio, fine, verbale);
+
+        // Salva l'ultimo parametro localmente
+        this.tipoIntervento = tipoIntervento;
     }
 
+    // --- GETTER E SETTER SPECIFICI ---
+
+    public String getTipoIntervento() {
+        return tipoIntervento;
+    }
+
+    public void setTipoIntervento(String tipoIntervento) {
+        this.tipoIntervento = tipoIntervento;
+    }
 }

@@ -27,6 +27,17 @@ public class MedicoWindow extends JFrame {
     private JRadioButton visitaRadioButton;
     private JTextArea turnoDelMedicoTextArea;
     private JButton INDIETROButton3;
+    private JTextField campoOraFinePrestazione;
+    private JTextField campoTipoPrestazione;
+    private JTextField campoNosologicoDimissione;
+    private JTextField campoDataDimissione;
+    private JButton dimettiButton;
+    private JButton indietroButton5;
+    private JButton DIMETTIPAZIENTEButton;
+
+
+
+
 
     public MedicoWindow() {
         setTitle("Pannello Medico");
@@ -51,20 +62,23 @@ public class MedicoWindow extends JFrame {
     public JButton getBtnModificaVerbale() { return btnModificaVerbale; }
     public JButton getBtnVisualizzaAgenda() { return btnVisualizzaAgenda; }
     public JButton getBtnLogout() { return btnLogout; }
+    public JButton getDIMETTIPAZIENTEButton() {return DIMETTIPAZIENTEButton;}
 
     //Getter della schermata Pianifica Prestazione
     public JButton getPIANIFICAPRESTAZIONEButton() { return PIANIFICAPRESTAZIONEButton; }
     public JButton getINDIETROButton() { return INDIETROButton; }
     public String getDataInizioPrestazione() { return dataInizioPrestazioneTextField.getText(); }
     public String getRicovero() { return ricoveroTextField.getText(); }
+    public boolean isIntervento() { return interventoRadioButton.isSelected(); }
+    public boolean isVisita() { return visitaRadioButton.isSelected(); }
 
-    //Getter della schermata Esegui Prestazione
+    //Getter della schermata scrivi verbale
     public JButton getCONFERMAButton() { return CONFERMAButton; }
     public JButton getINDIETROButton1() { return INDIETROButton1; }
     public String getPrestazioneEseguita() { return prestazioneTextField.getText(); }
     public String getVerbale() { return txtAreaVerbale.getText(); }
-    public boolean isIntervento() { return interventoRadioButton.isSelected(); }
-    public boolean isVisita() { return visitaRadioButton.isSelected(); }
+    public String getcampoOraFinePrestazione() { return campoOraFinePrestazione.getText(); }
+    public String getcampoTipoPrestazione() { return campoTipoPrestazione.getText(); }
 
     //Getter della schermata Modifica Verbale
     public JButton getMODIFICAButton() { return MODIFICAButton; }
@@ -82,17 +96,22 @@ public class MedicoWindow extends JFrame {
         return "Non specificato";
     }
 
-    //Metodi di Utility
+    //getter schermata dimissione paziente
+     public String getCampoNosologicoDimissione() {return campoNosologicoDimissione.getText();}
+        public String getCampoDataDimissione() {return campoDataDimissione.getText();}
+        public JButton getDimettiButton() {return dimettiButton;}
+        public JButton getIndietroButton5() {return indietroButton5;}
+    //svuotamento
     public void svuotaCampi() {
-        dataInizioPrestazioneTextField.setText("");
-        ricoveroTextField.setText("");
-        txtAreaVerbale.setText("");
-        prestazioneTextField.setText("");
-        prestazioneTextField1.setText("");
-        nuovoVerbaleTextArea.setText("");
-        turnoDelMedicoTextArea.setText("");
-
-        interventoRadioButton.setSelected(false);
-        visitaRadioButton.setSelected(false);
+        if (dataInizioPrestazioneTextField != null) dataInizioPrestazioneTextField.setText("data inizio prestazione");
+        if (ricoveroTextField != null) ricoveroTextField.setText("codice ricovero");
+        if (txtAreaVerbale != null) txtAreaVerbale.setText("verbale");
+        if (prestazioneTextField != null) prestazioneTextField.setText("codice prestazione");
+       if(prestazioneTextField1 != null) prestazioneTextField1.setText("codice prestazione");
+       if(nuovoVerbaleTextArea != null)  nuovoVerbaleTextArea.setText("verbale");
+       if(turnoDelMedicoTextArea != null) turnoDelMedicoTextArea.setText("");
+       if(campoTipoPrestazione!= null) campoTipoPrestazione.setText("tipo prestazione");
+       if(interventoRadioButton != null) interventoRadioButton.setSelected(false);
+       if(visitaRadioButton != null) visitaRadioButton.setSelected(false);
     }
 }

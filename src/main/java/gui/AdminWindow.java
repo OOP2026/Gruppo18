@@ -6,6 +6,10 @@ public class AdminWindow extends JFrame {
     //Componenti grafici
     private JPanel menu;
     private JPanel mainPanel;
+    private JTextField campoCognome;
+    private JTextField campoNome;
+    private JTextField campoCodiceFiscale;
+    private JTextField campoDataNascita;
     private JButton btnIniziaRicovero;
     private JButton btnAssegnaPaziente;
     private JButton btnVisualizzaAnagrafica;
@@ -20,11 +24,17 @@ public class AdminWindow extends JFrame {
     private JButton ASSEGNAPAZIENTEButton;
     private JButton INDIETROButton;
     private JButton INDIETROButton1;
-    private JTextField textField1;
     private JButton INDIETROButton2;
-    private JTextField dataInizioRicoveroTextField;
-    private JTextField dataDimissionePrevistaTextField;
-    private JTextField dataDimissioneTextField;
+    private JTextArea AreaAnagrafica;
+    private JTextField CampoGruppoSanguigno;
+    private JTextField CampoDataFinePrevista;
+    private JButton turnoButton;
+    private JTextField campoEmailMedico;
+    private JTextField campoOraFine;
+    private JTextField campoDataTurno;
+    private JTextField campoOraInizio;
+    private JButton indietro4Button;
+    private JButton aggiungiorarioButton;
 
     //Finestra ADMIN
     public AdminWindow() {
@@ -48,34 +58,69 @@ public class AdminWindow extends JFrame {
     public JButton getBtnIniziaRicovero() { return btnIniziaRicovero; }
     public JButton getBtnAssegnaPaziente() { return btnAssegnaPaziente; }
     public JButton getBtnVisualizzaAnagrafica() { return btnVisualizzaAnagrafica; }
+    public JButton getTurnoButton() { return turnoButton; }
     public JButton getBtnLogout() { return btnLogout; }
 
     // Getter della schermata menu'
     public JButton getINIZIARICOVEROButton() { return INIZIARICOVEROButton; }
     public JButton getINDIETROButton() { return INDIETROButton; }
 
-    public String getNumNosologicoRicovero() { return numNosologicoTextField.getText(); }
+    public String getNumNosologicoRicovero() { return numNosologicoTextField1.getText(); }
     public String getNumLetto() { return numLettoTextField.getText(); }
-    public String getDataInizio() { return dataInizioRicoveroTextField.getText(); }
-    public String getDataDimissionePrevista() { return dataDimissionePrevistaTextField.getText(); }
-    public String getDataDimissioneEffettiva() { return dataDimissioneTextField.getText(); }
+    public String getDataDimissionePrevista() { return CampoDataFinePrevista.getText(); }
 
     public JButton getASSEGNAPAZIENTEButton() { return ASSEGNAPAZIENTEButton; }
     public JButton getINDIETROButton1() { return INDIETROButton1; }
-
-    public String getNomePaziente() { return nomeTextField.getText(); }
-    public String getCognomePaziente() { return cognomeTextField.getText(); }
-    public String getNumNosologicoNuovo() { return numNosologicoTextField1.getText(); }
-
+    public String getGruppoSanguigno() {
+        return CampoGruppoSanguigno.getText();
+    }
+    public String getNomePaziente() { return campoNome.getText(); }
+    public String getCognomePaziente() { return campoCognome.getText(); }
+    public String getNumNosologicoNuovo() { return numNosologicoTextField.getText(); }
     public JButton getINDIETROButton2() { return INDIETROButton2; }
-    public String getRicercaNosologico() { return textField1.getText(); }
 
+    public String getCodiceFiscale() {
+        return campoCodiceFiscale.getText();
+    }
+
+    public String getDataNascita() {
+        return campoDataNascita.getText();
+    }
+
+    // Getter della schermata Turni medici
+    public String getEmailMedico() { return campoEmailMedico.getText(); }
+    public String getDataTurno() { return campoDataTurno.getText(); }
+    public String getOraInizio() { return campoOraInizio.getText(); }
+    public String getOraFine() { return campoOraFine.getText(); }
+    public JButton getAggiungiOrarioButton() { return aggiungiorarioButton; }
+    public JButton getIndietro4Button() { return indietro4Button; }
+
+    public void setTestoAnagrafica(String testo) {
+        AreaAnagrafica.setText(testo);
+    }
     public void svuotaCampi() {
-        numNosologicoTextField.setText("");
-        numLettoTextField.setText("");
-        nomeTextField.setText("");
-        cognomeTextField.setText("");
-        numNosologicoTextField1.setText("");
-        textField1.setText("");
+        // --- CAMPI ANAGRAFICA ---
+        if (nomeTextField != null) nomeTextField.setText("nome");
+        if (cognomeTextField != null) cognomeTextField.setText("cognome");
+        if (numNosologicoTextField1 != null) numNosologicoTextField1.setText("numnosologico");
+        if (campoNome != null) campoNome.setText("nome");
+        if (campoCognome != null) campoCognome.setText("cognome");
+        if (campoCodiceFiscale != null) campoCodiceFiscale.setText("codiceFiscale");
+        if (campoDataNascita != null) campoDataNascita.setText("dataNascita");
+        if (CampoGruppoSanguigno != null) CampoGruppoSanguigno.setText("gruppo sanguigno");
+
+        // --- CAMPI RICOVERO ---
+        if (numNosologicoTextField != null) numNosologicoTextField.setText("numnosologico");
+        if (numLettoTextField != null) numLettoTextField.setText("letto");
+        if (CampoDataFinePrevista != null) CampoDataFinePrevista.setText("data dimissione prevista");
+
+        // --- AREA LISTA PAZIENTI ---
+        if (AreaAnagrafica != null) AreaAnagrafica.setText("");
+
+        // --- CAMPI TURNO MEDICO ---
+        if (campoEmailMedico != null) campoEmailMedico.setText("email medico");
+        if (campoDataTurno != null) campoDataTurno.setText("data turno");
+        if (campoOraInizio != null) campoOraInizio.setText("ora inizio");
+        if (campoOraFine != null) campoOraFine.setText("ora fine");
     }
 }
