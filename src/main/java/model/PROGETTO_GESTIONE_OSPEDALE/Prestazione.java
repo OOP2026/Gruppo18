@@ -10,11 +10,11 @@ public abstract class Prestazione {
     private String verbale;
 
     // Costruttore vuoto di default
-    public Prestazione() {
+    protected Prestazione() {
     }
 
     // Costruttore completo
-    public Prestazione(String tipo, LocalDateTime inizio, LocalDateTime fine, String verbale) {
+    protected Prestazione(String tipo, LocalDateTime inizio, LocalDateTime fine, String verbale) {
         this.tipo = tipo;
         this.inizio = inizio;
         this.fine = fine;
