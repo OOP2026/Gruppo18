@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.logging.Logger;
 
 public class Controller {
-
+   static final String OPERAZIONE="operazione Completata";
     private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
 
     // Finestre (View)
@@ -111,7 +111,7 @@ public class Controller {
         adminWindow.getINDIETROButton1().addActionListener(tornaAlMenuAdmin);
         adminWindow.getINDIETROButton2().addActionListener(tornaAlMenuAdmin);
         adminWindow.getIndietro4Button().addActionListener(tornaAlMenuAdmin);
-        // Operazione di avvio di un nuovo Ricovero
+        // operazione di avvio di un nuovo Ricovero
         adminWindow.getINIZIARICOVEROButton().addActionListener(e -> {
             String nosologico = adminWindow.getNumNosologicoRicovero();
             String letto = adminWindow.getNumLetto();
@@ -127,7 +127,7 @@ public class Controller {
             if (ricoveroDAO.haRicoveroAttivo(cfcontrollo)) {
                 JOptionPane.showMessageDialog(adminWindow,
                         "Impossibile procedere: Il paziente risulta già ricoverato in un altro letto!",
-                        "Paziente già ricoverato",
+                        OPERAZIONE,
                         JOptionPane.WARNING_MESSAGE);
                 return;
             }
@@ -142,6 +142,12 @@ public class Controller {
 
             if (successo) {
                 LOGGER.info("Ricovero registrato correttamente per il paziente con codice fiscale: " + cfcontrollo);
+                    JOptionPane.showMessageDialog(
+                            adminWindow, // Usa adminWindow come componente padre così il pop-up si centra sulla finestra
+                            "Ricovero registrato con successo\nPaziente: " + cfcontrollo,
+                            OPERAZIONE,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 adminWindow.svuotaCampi();
                 adminWindow.getTabbedPane().setSelectedIndex(0);
             } else {
@@ -149,7 +155,7 @@ public class Controller {
             }
         });
 
-        // Operazione di registrazione di un nuovo Paziente in anagrafica
+        // OPERAZIONE di registrazione di un nuovo Paziente in anagrafica
         adminWindow.getASSEGNAPAZIENTEButton().addActionListener(e -> {
             String nome = adminWindow.getNomePaziente();
             String cognome = adminWindow.getCognomePaziente();
@@ -173,6 +179,12 @@ public class Controller {
 
             if (successo) {
                 LOGGER.info("Anagrafica salvata. Paziente registrato: " + nome + " " + cognome);
+                    JOptionPane.showMessageDialog(
+                            adminWindow, // Usa adminWindow come componente padre così il pop-up si centra sulla finestra
+                            "paziente inserito correttamente\nPaziente:" + nome + " " + cognome,
+                            OPERAZIONE,
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 adminWindow.svuotaCampi();
                 adminWindow.getTabbedPane().setSelectedIndex(0);
             } else {
@@ -201,6 +213,12 @@ public class Controller {
             boolean successo = turnoDAO.inserisciTurnoMedico(email, dataTurno, oraInizio, oraFine);
             if (successo) {
                 LOGGER.info("Turno salvato per medico: " + email);
+                JOptionPane.showMessageDialog(
+                        adminWindow, // Usa adminWindow come componente padre così il pop-up si centra sulla finestra
+                        "Turno salvato con successo\nMedico:" + email,
+                        OPERAZIONE,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 adminWindow.svuotaCampi();
                 adminWindow.getTabbedPane().setSelectedIndex(0);
             } else {
@@ -213,14 +231,14 @@ public class Controller {
     private void inizializzaEventiMedico() {
         // Gestione dei pulsanti di navigazione del menu principale medico
         medicoWindow.getBtnEseguiPrestazione().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(1));
-        medicoWindow.getBtnPianificaPrestazione().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(2));
-        medicoWindow.getBtnModificaVerbale().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(3));
+        medicoWindow.getBtnPianificaPrestazione().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(3));
+        medicoWindow.getBtnModificaVerbale().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(4));
         medicoWindow.getDIMETTIPAZIENTEButton().addActionListener(e -> medicoWindow.getTabbedPane1().setSelectedIndex(5));
         // Visualizzazione dei turni lavorativi nell'agenda
         medicoWindow.getBtnVisualizzaAgenda().addActionListener(e -> {
             String agenda = turnoDAO.recuperaAgendaMedico(utenteLoggatoEmail);
             medicoWindow.setTestoAgenda(agenda);
-            medicoWindow.getTabbedPane1().setSelectedIndex(4);
+            medicoWindow.getTabbedPane1().setSelectedIndex(2);
         });
 
         medicoWindow.getBtnLogout().addActionListener(e -> eseguiLogout(medicoWindow));
@@ -235,7 +253,7 @@ public class Controller {
         medicoWindow.getINDIETROButton3().addActionListener(tornaAlMenuMedico);
         medicoWindow.getIndietroButton5().addActionListener(tornaAlMenuMedico);
 
-        // Operazione di verbalizzazione di una prestazione medica esistente
+        // operazione di verbalizzazione di una prestazione medica esistente
         medicoWindow.getCONFERMAButton().addActionListener(e -> {
             String pres = medicoWindow.getPrestazioneEseguita();
             String verb = medicoWindow.getVerbale();
@@ -251,6 +269,12 @@ public class Controller {
             boolean successo = prestazioneDAO.aggiungiVerbale(pres, verb, dataFinePrestazione, Tipoprestazione);
             if (successo) {
                 LOGGER.info("verbale e ora fine prestazione aggiunte alla prestazione " + pres + " registrata con successo.");
+                JOptionPane.showMessageDialog(
+                        medicoWindow,
+                        "verbale e ora fine prestazione aggiunte\ni dati nella prestazione:" + pres +"sono stati aggiunti",
+                        OPERAZIONE,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 medicoWindow.svuotaCampi();
                 medicoWindow.getTabbedPane1().setSelectedIndex(0);
             } else {
@@ -258,7 +282,7 @@ public class Controller {
             }
         });
 
-        // Operazione di pianificazione temporale di una nuova prestazione
+        // operazione di pianificazione temporale di una nuova prestazione
         medicoWindow.getPIANIFICAPRESTAZIONEButton().addActionListener(e -> {
             String data = medicoWindow.getDataInizioPrestazione();
             String ricovero = medicoWindow.getRicovero();
@@ -274,6 +298,12 @@ public class Controller {
 
             if (successo) {
                 LOGGER.info("Nuova prestazione pianificata correttamente per la data indicata.");
+                JOptionPane.showMessageDialog(
+                        medicoWindow,
+                        "nuova prestazione pianificata\n:" + data + "codice ricovero"+ricovero+"sono stati aggiunti",
+                        OPERAZIONE,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 medicoWindow.svuotaCampi();
                 medicoWindow.getTabbedPane1().setSelectedIndex(0);
             } else {
@@ -281,7 +311,7 @@ public class Controller {
             }
         });
 
-        // Operazione di modifica di un verbale preesistente
+        // operazione di modifica di un verbale preesistente
         medicoWindow.getMODIFICAButton().addActionListener(e -> {
             String pres = medicoWindow.getPrestazioneDaModificare();
             String nuovoVerbale = medicoWindow.getNuovoVerbale();
@@ -295,6 +325,12 @@ public class Controller {
 
             if (successo) {
                 LOGGER.info("Il verbale relativo alla prestazione " + pres + " è stato modificato con successo.");
+                JOptionPane.showMessageDialog(
+                        medicoWindow,
+                        "il verbale è stato modificato\n:"+" alla prestazione"+ pres,
+                        OPERAZIONE,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 medicoWindow.svuotaCampi();
                 medicoWindow.getTabbedPane1().setSelectedIndex(0);
             } else {
@@ -326,6 +362,12 @@ public class Controller {
             if (successo) {
                 LOGGER.info("Paziente dimesso con successo: " + codiceFiscale);
                 JOptionPane.showMessageDialog(medicoWindow, "Paziente dimesso con successo.");
+                JOptionPane.showMessageDialog(
+                        medicoWindow,
+                        "paziente dimesso\n:"+ "codice fiscale paziente:"+codiceFiscale,
+                        OPERAZIONE,
+                        JOptionPane.INFORMATION_MESSAGE
+                );
                 medicoWindow.svuotaCampi();
                 medicoWindow.getTabbedPane1().setSelectedIndex(0);
             } else {
