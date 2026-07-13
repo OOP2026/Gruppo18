@@ -1,6 +1,6 @@
 package dao;
 
-import model.PROGETTO_GESTIONE_OSPEDALE.Paziente;
+import model.Paziente;
 
 /**
  * Interfaccia per la gestione dell'accesso ai dati dell'entità Paziente.

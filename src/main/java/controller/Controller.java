@@ -1,7 +1,7 @@
 package controller;
 
 import gui.*;
-import model.PROGETTO_GESTIONE_OSPEDALE.*;
+import model.*;
 import dao.*;
 import implementazioneDao.*;
 
@@ -120,13 +120,13 @@ public class Controller {
             String datafineprevista = adminWindow.getDataDimissionePrevista();
 
             if (cfcontrollo == null) {
-                JOptionPane.showMessageDialog(adminWindow, "Nessun paziente trovato con questo nosologico!", "Errore", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(adminWindow, "Nessun paziente trovato con questo nosologico", "Errore", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             if (ricoveroDAO.haRicoveroAttivo(cfcontrollo)) {
                 JOptionPane.showMessageDialog(adminWindow,
-                        "Impossibile procedere: Il paziente risulta già ricoverato in un altro letto!",
+                        "Impossibile procedere: Il paziente risulta già ricoverato in un altro letto",
                         OPERAZIONE,
                         JOptionPane.WARNING_MESSAGE);
                 return;
