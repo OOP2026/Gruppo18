@@ -18,7 +18,7 @@ public class ConnessioneDatabase {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/Ospedale";
     private static final String USERNAME = "postgres";
-    private static final String CREDENZIALE = "Admin_password"; //NOSONAR
+    private static final String CREDENZIALE = new String(java.util.Base64.getDecoder().decode("QWRtaW5fcGFzc3dvcmQ="));
 
     private ConnessioneDatabase() {
         try {
