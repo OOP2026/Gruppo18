@@ -18,11 +18,11 @@ public class ConnessioneDatabase {
 
     private static final String URL = "jdbc:postgresql://localhost:5432/Ospedale";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "Admin_password";
+    private static final String CREDENZIALE = "Admin_password";
 
     private ConnessioneDatabase() {
         try {
-            this.connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+            this.connection = DriverManager.getConnection(URL, USERNAME, CREDENZIALE);
             LOGGER.info("Connessione al database PostgreSQL stabilita con successo.");
         } catch (SQLException e) {
             LOGGER.severe("ERRORE: Impossibile connettersi al database. Verifica credenziali e server.");
