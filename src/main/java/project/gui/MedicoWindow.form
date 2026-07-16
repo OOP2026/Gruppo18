@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="project.gui.MedicoWindow">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="478"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <tabbedpane id="50d36" binding="tabbedPane1" default-binding="true">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="200" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="bc3a2" binding="menu" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Menu'"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="58a36" class="javax.swing.JButton" binding="btnEseguiPrestazione">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="PIANIFICA UNA PRESTAZIONE"/>
+                </properties>
+              </component>
+              <component id="e3e86" class="javax.swing.JButton" binding="btnPianificaPrestazione">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="SCRIVI VERBALE"/>
+                </properties>
+              </component>
+              <component id="b7f30" class="javax.swing.JButton" binding="btnModificaVerbale">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="MODIFICA VERBALE"/>
+                </properties>
+              </component>
+              <component id="43c2e" class="javax.swing.JButton" binding="btnVisualizzaAgenda">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="VISUALIZZA AGENDA"/>
+                </properties>
+              </component>
+              <component id="eac83" class="javax.swing.JButton" binding="btnLogout">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="LOGOUT"/>
+                </properties>
+              </component>
+              <component id="856d3" class="javax.swing.JButton" binding="DIMETTIPAZIENTEButton" default-binding="true">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="DIMETTI PAZIENTE"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="2b3a3" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Pianifica una prestazione"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="ac749" class="javax.swing.JTextField" binding="dataInizioPrestazioneTextField" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Data inizio prestazione"/>
+                </properties>
+              </component>
+              <component id="fb67d" class="javax.swing.JButton" binding="PIANIFICAPRESTAZIONEButton" default-binding="true">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="PIANIFICA PRESTAZIONE"/>
+                </properties>
+              </component>
+              <component id="609aa" class="javax.swing.JButton" binding="INDIETROButton" default-binding="true">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="INDIETRO"/>
+                </properties>
+              </component>
+              <component id="24bdf" class="javax.swing.JTextField" binding="ricoveroTextField" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Ricovero"/>
+                </properties>
+              </component>
+              <component id="cc443" class="javax.swing.JRadioButton" binding="interventoRadioButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Intervento"/>
+                </properties>
+              </component>
+              <component id="ac025" class="javax.swing.JRadioButton" binding="visitaRadioButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Visita"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="3ab08" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Visualizza Agenda"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="da159" class="javax.swing.JTextArea" binding="turnoDelMedicoTextArea" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Turno del Medico"/>
+                </properties>
+              </component>
+              <component id="5d3d" class="javax.swing.JButton" binding="INDIETROButton3" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="INDIETRO"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="554b7" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Scrivi Verbale"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="65d14" class="javax.swing.JButton" binding="CONFERMAButton" default-binding="true">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="CONFERMA"/>
+                </properties>
+              </component>
+              <component id="49de1" class="javax.swing.JButton" binding="INDIETROButton1" default-binding="true">
+                <constraints>
+                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="INDIETRO"/>
+                </properties>
+              </component>
+              <component id="32d33" class="javax.swing.JTextField" binding="prestazioneTextField" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Prestazione"/>
+                </properties>
+              </component>
+              <component id="9dddc" class="javax.swing.JTextArea" binding="txtAreaVerbale">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Verbale"/>
+                </properties>
+              </component>
+              <component id="a326d" class="javax.swing.JTextField" binding="campoOraFinePrestazione">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="ora fine prestazione"/>
+                </properties>
+              </component>
+              <component id="c751" class="javax.swing.JTextField" binding="campoTipoPrestazione">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="tipo prestazione"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="2c1d5" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Modifica Verbale"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="357ea" class="javax.swing.JTextArea" binding="nuovoVerbaleTextArea" default-binding="true">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="50"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Nuovo Verbale"/>
+                </properties>
+              </component>
+              <component id="30ff9" class="javax.swing.JButton" binding="MODIFICAButton" default-binding="true">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="MODIFICA"/>
+                </properties>
+              </component>
+              <component id="3b9c1" class="javax.swing.JButton" binding="INDIETROButton2" default-binding="true">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="INDIETRO"/>
+                </properties>
+              </component>
+              <component id="71551" class="javax.swing.JTextField" binding="prestazioneTextField1" default-binding="true">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="Prestazione"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="9689d" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="dimetti paziente"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="fe1ad" class="javax.swing.JTextField" binding="campoNosologicoDimissione">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="num.nosologico"/>
+                </properties>
+              </component>
+              <component id="ae7d9" class="javax.swing.JTextField" binding="campoDataDimissione">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="data dimissione"/>
+                </properties>
+              </component>
+              <component id="23ae7" class="javax.swing.JButton" binding="dimettiButton">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="Dimetti"/>
+                </properties>
+              </component>
+              <component id="1ca27" class="javax.swing.JButton" binding="indietroButton5">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <text value="indietro"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+  <buttonGroups>
+    <group name="buttonGroup1">
+      <member id="cc443"/>
+      <member id="ac025"/>
+    </group>
+  </buttonGroups>
+</form>
